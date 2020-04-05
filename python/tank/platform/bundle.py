@@ -973,10 +973,10 @@ class TankBundle(object):
             default_value = None
 
             if settings_name:
-                default_value = resolve_default_value(
-                    manifest.get(settings_name),
-                    engine_name=self._get_engine_name(),
-            )
+                schema = manifest.get(settings_name)
+                if schema:
+                    default_value = resolve_default_value(
+                        schema, engine_name=self._get_engine_name())
 
             if default_value:  # possible not to have a default value!
 
