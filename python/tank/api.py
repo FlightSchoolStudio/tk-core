@@ -587,10 +587,11 @@ class Sgtk(object):
             globs_searched.add(glob_str)
 
             # Find all files which are valid for this key set
+            matching_files = self.execute_core_hook("find_matching_files", glob_str=glob_str)
             found_files.update(
                 [
                     found_file
-                    for found_file in glob.iglob(glob_str)
+                    for found_file in matching_files
                     if template.validate(found_file)
                 ]
             )
